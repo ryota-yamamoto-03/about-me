@@ -1,0 +1,74 @@
+// モーダル表示で自己紹介動画が見れる
+document.addEventListener("DOMContentLoaded", () => {
+  const openBtn = document.getElementById("openVideoBtn");
+  const modal = document.getElementById("videoModal");
+  const closeBtn = document.getElementById("closeModal");
+  const iframe = document.getElementById("youtubeVideo");
+
+  const videoURL = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+
+  openBtn.addEventListener("click", () => {
+    modal.style.display = "flex";
+    setTimeout(() => {
+      iframe.src = videoURL;
+    }, 100);
+  });
+
+  function closeModal() {
+    modal.style.display = "none";
+    iframe.src = "";
+  }
+
+  closeBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    closeModal();
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.style.display === "flex") {
+      closeModal();
+    }
+  });
+});
+
+
+// アコーディオンでFAQで見れる
+document.addEventListener("DOMContentLoaded", () => {
+  const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+  accordionHeaders.forEach((header) => {
+    header.addEventListener("click", () => {
+      const content = header.nextElementSibling;
+
+      // 他のを閉じる（任意）
+      document.querySelectorAll(".accordion-content").forEach((el) => {
+        if (el !== content) {
+          el.style.maxHeight = null;
+        }
+      });
+
+      // トグル動作
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+});
+
+// Xにポストする
+ function postToX() {
+      const text = encodeURIComponent("「ITスキル×自身の障害経験で、誰かの“はじめの一歩”を支えたい」\n動画で自己紹介しています。ぜひご覧ください！\n");
+      const url = encodeURIComponent("https://あなたの動画リンク.com"); // ← ここに実際の動画URLを入れてください
+      const hashtags = "就労移行支援,IT支援,自己紹介";
+
+      const postUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`;
+      window.open(postUrl, "_blank");
+  }
