@@ -66,9 +66,66 @@ document.addEventListener("DOMContentLoaded", () => {
 // Xにポストする
  function postToX() {
       const text = encodeURIComponent("「ITスキル×自身の障害経験で、誰かの“はじめの一歩”を支えたい」\n動画で自己紹介しています。ぜひご覧ください！\n");
-      const url = encodeURIComponent("https://あなたの動画リンク.com"); // ← ここに実際の動画URLを入れてください
+      const url = encodeURIComponent("https://ryota-yamamoto-03.github.io/about-me/");
       const hashtags = "就労移行支援,IT支援,自己紹介";
 
       const postUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtags}`;
       window.open(postUrl, "_blank");
   }
+
+// モーダル＋縦スクロール可能
+// カードをクリックしたら対応するモーダルを表示
+  document.querySelectorAll('.work-card-1').forEach(card => {
+    card.addEventListener('click', () => {
+      const modalId = card.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'flex';
+      }
+    });
+  });
+
+  document.querySelectorAll('.work-card-2').forEach(card => {
+    card.addEventListener('click', () => {
+      const modalId = card.getAttribute('data-modal');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'flex';
+      }
+    });
+  });
+
+  // モーダルを閉じる（×ボタン）
+  document.querySelectorAll('.close-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.work-modal').style.display = 'none';
+    });
+  });
+
+  // モーダル外クリックでも閉じる
+  window.addEventListener('click', (e) => {
+    if (e.target.classList.contains('work-modal')) {
+      e.target.style.display = 'none';
+    }
+  });
+
+  // Escキーでも閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll('.work-modal').forEach(modal => {
+        modal.style.display = 'none';
+      });
+    }
+  });
+
+// ハッシュタグをXでポストする
+const siteURL = "https://ryota-yamamoto-03.github.io/about-me/"; // 現在のサイトURL
+
+  document.querySelectorAll('.hashtag').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const hashtag = tag.getAttribute('data-tag');
+      const text = `私の特徴は #${hashtag} です。\n詳しくはこちらのサイトから！\n${siteURL}`;
+      const tweetURL = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+      window.open(tweetURL, '_blank');
+    });
+  });
