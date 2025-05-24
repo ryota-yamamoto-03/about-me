@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.getElementById("closeModal");
   const iframe = document.getElementById("youtubeVideo");
 
-  const videoURL = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+  const videoURL = "https://www.youtube.com/embed/MLe4HbPqWtg?autoplay=1";
 
   openBtn.addEventListener("click", () => {
     modal.style.display = "flex";
