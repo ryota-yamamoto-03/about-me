@@ -360,6 +360,7 @@ section h3 {
 .number-card:hover{
   transform: scale(1.05);
   box-shadow: 0 6px 15px rgba(255, 156, 75, 0.2);
+  color: var(--color-accent);
 }
 
 .label {
