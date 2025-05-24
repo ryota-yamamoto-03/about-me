@@ -140,3 +140,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+
+// スマホアラート機能
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 768) {
+      const alertBox = document.getElementById('mobile-alert');
+      alertBox.classList.add('show');
+      setTimeout(() => {
+        alertBox.classList.remove('show');
+      }, 5000); // 5秒後に消える
+    }
+  });
