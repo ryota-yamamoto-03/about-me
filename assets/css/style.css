@@ -298,11 +298,12 @@ section h3 {
   position: absolute;
   bottom: 1rem;
   left: 1rem;
-  background-color: #00A63A;
-  color: #FFFFFF;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
   padding: 0.25rem 0.75rem;
   font-size: 0.8rem;
   border-radius: 999px;
+  /* border: solid #00A63A; */
   font-weight: bold;
   z-index: 1;
 }
